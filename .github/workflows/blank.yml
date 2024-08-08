@@ -42,9 +42,9 @@ jobs:
           SNOWFLAKE_CONNECTIONS_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
           SNOWFLAKE_CONNECTIONS_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}        
         run: |
-          snow sql -q "ALTER GIT REPOSITORY mfdemo FETCH" --temporary-connection --account $SNOWFLAKE_CONNECTIONS_ACCOUNT --user $SNOWFLAKE_CONNECTIONS_USER --password $SNOWFLAKE_CONNECTION_PASSWORD --role "$SNOWFLAKE_CONNECTIONS_ROLES" --warehouse $SNOWFLAKE_CONNECTION_WAREHOUSE --database $SNOWFLAKE_CONNECTIONS_DATABASE --schema $SNOWFLAKE_CONNECTIONS_SCHEMA
+          snow sql -q "ALTER GIT REPOSITORY mf_demo FETCH" --temporary-connection --account $SNOWFLAKE_CONNECTIONS_ACCOUNT --user $SNOWFLAKE_CONNECTIONS_USER --password $SNOWFLAKE_CONNECTION_PASSWORD --role "$SNOWFLAKE_CONNECTIONS_ROLES" --warehouse $SNOWFLAKE_CONNECTION_WAREHOUSE --database $SNOWFLAKE_CONNECTIONS_DATABASE --schema $SNOWFLAKE_CONNECTIONS_SCHEMA
           
-          snow sql -q "EXECUTE IMMEDIATE FROM @mfdemo/branches/main/scripts/insert_inventory.sql" --temporary-connection --account $SNOWFLAKE_CONNECTIONS_ACCOUNT --user $SNOWFLAKE_CONNECTIONS_USER --password $SNOWFLAKE_CONNECTION_PASSWORD --role "$SNOWFLAKE_CONNECTIONS_ROLES" --warehouse $SNOWFLAKE_CONNECTION_WAREHOUSE --database $SNOWFLAKE_CONNECTIONS_DATABASE --schema $SNOWFLAKE_CONNECTIONS_SCHEMA
+          snow sql -q "EXECUTE IMMEDIATE FROM @mf_demo/branches/main/scripts/insert_inventory.sql" --temporary-connection --account $SNOWFLAKE_CONNECTIONS_ACCOUNT --user $SNOWFLAKE_CONNECTIONS_USER --password $SNOWFLAKE_CONNECTION_PASSWORD --role "$SNOWFLAKE_CONNECTIONS_ROLES" --warehouse $SNOWFLAKE_CONNECTION_WAREHOUSE --database $SNOWFLAKE_CONNECTIONS_DATABASE --schema $SNOWFLAKE_CONNECTIONS_SCHEMA
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
